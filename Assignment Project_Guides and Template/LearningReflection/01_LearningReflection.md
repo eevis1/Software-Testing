@@ -15,9 +15,12 @@ I wrote and managed my test cases on Visual Studio Code following the examples w
 *** Test Case ***
 
 Test Case-1 Name
-    Process Step One
-    Step Two    TestData
-    Verification or Validation Steps With Expected Data	   
+    
+Process Step One
+
+Step Two    TestData
+
+Verification or Validation Steps With Expected Data	   
 
 
 ## 3. Do you recommend any other tools or styles for Test case management. 
@@ -82,20 +85,21 @@ Robot Framework:
 
 Selenium:
     
-   Language Support: Selenium supports various programming languages, allowing flexibility in choosing a language best suited to your team's expertise.
-    Extensive Community Support: Selenium has a vast community and resources available, which can be beneficial for addressing challenges and seeking assistance.
-    Ability to Interact with Web Elements: Selenium allows direct interaction with web elements, which is crucial for form input and validation.
+   Language Support: Selenium supports various programming languages, allowing flexibility in choosing a language best suited to your team's 
+   expertise.
+   Extensive Community Support: Selenium has a vast community and resources available, which can be beneficial for addressing challenges and           seeking assistance.
+   Ability to Interact with Web Elements: Selenium allows direct interaction with web elements, which is crucial for form input and validation.
 
 Cypress:
 
-    Simplicity and Ease of Use: Cypress offers an intuitive API that simplifies writing test cases, potentially reducing the complexity of the test scripts.
-    JavaScript Frameworks: If your application heavily relies on JavaScript frameworks, Cypress might provide advantages due to its native support for these types of applications.
+   Simplicity and Ease of Use: Cypress offers an intuitive API that simplifies writing test cases, potentially reducing the complexity of the test     scripts.
+   JavaScript Frameworks: If your application heavily relies on JavaScript frameworks, Cypress might provide advantages due to its native support      for these types of applications.
 
 Selection Criteria:
 
-    Team Skills: If the team is more comfortable with a particular language or framework, consider leveraging their expertise.
-    Test Case Structure: If the test cases are structured with keywords and descriptions, Robot Framework might be a good fit due to its keyword-driven nature.
-    Application Technology: If the application heavily utilizes JavaScript or specific frameworks, Cypress might be more efficient due to its compatibility.
+   Team Skills: If the team is more comfortable with a particular language or framework, consider leveraging their expertise.
+   Test Case Structure: If the test cases are structured with keywords and descriptions, Robot Framework might be a good fit due to its keyword-       driven nature.
+   Application Technology: If the application heavily utilizes JavaScript or specific frameworks, Cypress might be more efficient due to its           mpatibility.
 
 Conclusion:
 
