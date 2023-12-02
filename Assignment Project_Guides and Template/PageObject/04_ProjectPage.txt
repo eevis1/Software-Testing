@@ -1,0 +1,87 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	Login to Gitlab 
+Post Condition	Sign out from Gitlab
+Tags  Project, TS-3-Project
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+MainUrl= https://gitlab.com
+ProjectName= NewProject
+FirstProjectName= FirstProject
+TemplateName= TemplateName
+UpdatedName= UpdatedName
+Invalid_Name= SameName
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Tests 
+
+	Create a blank project with a unique name
+    Navigate To Main Page  MainUrl
+	Click New Project -button
+	Click Create Blank Project -button
+    Input Project name  ProjectName
+    Click Create Project -button
+    Verify Page Should Contain Project page	 
+
+	Valide that message is showing Project 'FirstProject' was successfully created.
+    Navigate To Main Page  MainUrl
+	Click New Project -button
+	Click Create Blank Project -button
+    Input Project name  FirstProjectName
+    Click Create Project -button
+    Verify Page Should Contain Message Project 'FirstProject' was successfully created.
+
+	Create a template project with a unique name
+    Navigate To Main Page  MainUrl
+	Click New Project -button
+	Click Create From Template -button
+	Click Use Template -button on Ruby on Rails
+    Input Project name  TamplateName
+    Click Create Project -button
+    Verify Page Should Contain a Message Project 'ProjectName' was successfully created.
+
+	Update the name of a template project 
+    Navigate To Main Page  MainUrl
+	Click the name of the existing template project to open TemplateName
+	Click Settings on the left sidebar
+	Click General under settings
+    Input Project name  UpdatedName
+    Click Save Changes -button
+    Verify Page Should Contain a Message Project 'UpdatedProject' was successfully updated.
+
+	Delete a template project 
+    Navigate To Main Page  MainUrl
+	Click the name of the existing template project to open TemplateName
+	Click Settings on the left sidebar
+	Click General under settings
+	Click the Expand-button on Advanced section at the bottom of the page
+    Click Delete-button at the bottom of the page
+	On the confirmation dialog box, enter what the dialog box tells you to enter (group/project name) 
+	Select Yes, delete project.
+    Verify Page Should Contain a Message Project 'Group / UpdatedProject-deleted-52696228' will be deleted on 'date'
+
+
+# Negative Tests
+
+	Create a blank project with the previous same name
+    Navigate To Main Page  MainUrl
+	Click New Project -button
+	Click Create Blank Project -button
+    Input Project name  Invalid_Name
+    Click Create Project -button
+    Verify that the Create Blank Project -page should show the error message The form contains the following errors: Project namespace name has already been taken, Name has already been taken, Path has already been taken
+
+
+

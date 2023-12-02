@@ -1,0 +1,120 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	User Registration Test scenario with verification, valid and invalid credentials.
+
+Pre Condition	Open Browser
+Post Condition	Close All Browsers
+Tags Registration, TS-2-Registration
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+LoginUrl = https://gitlab.com/users/sign_up
+FirstName= Xyz
+LastName= Zyx
+UserName= XYZ12345
+Email= xyz.zyx@laurea.fi
+Password= ***
+Invalid_FirstName=
+Invalid_LastName=
+Invalid_Username= XYZZZ
+Invalid_Email= xyz.zyx.laurea.fi
+Invalid_Password= ******
+Empty= 
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Tests
+
+	Register With Valid Credentials
+    Navigate To Sign Up Page  LoginUrl
+	Input FirstName FirstName
+	Input LastName LastName
+    Input Username  UserName
+	Input Email Email
+    Input Password  Password
+    Submit Sign Up Form
+    Verify Page Should Contain Welcome page	  
+
+
+# Negative Tests
+
+	Register With an Empty Password
+    Navigate To Sign Up Page  LoginUrl
+	Input FirstName FirstName
+	Input LastName LastName
+    Input Username  UserName
+	Input Email Email
+    Input Password  Empty_Password
+    Submit Sign Up Form
+    Verify Page Should Contain Invalid Password.
+
+	Error message Should Be Visible After Invalid Registration With Empty And Space
+    Navigate To Sign Up Page  LoginUrl
+    Input FirstName     Empty
+    Input LastName    Empty
+	Input Username  UserName
+	Input Email Email
+    Input Password  Password
+    Submit Sign Up Form
+    Verify That Error message should show This field is required
+
+	Error message Should Be Visible After Invalid Registration With Empty And Space
+    Navigate To Sign Up Page  LoginUrl
+	Input FirstName FirstName
+	Input LastName LastName
+	Input Username  UserName
+	Input Email Email
+    Input Password    Empty
+    Submit Sign Up Form
+    Verify That Error message should show Minimum length is 8 characters
+
+	Error message Should Be Visible After Invalid Registration With Empty And Space
+    Navigate To Sign Up Page  LoginUrl
+	Input FirstName FirstName
+	Input LastName LastName
+    Input Username    Empty
+	Input Email Email
+    Input Password  Password
+    Submit Sign Up Form
+    Verify That Error message should show Please create a username with only alphanumeric characters.
+
+	Register With an Invalid Email
+    Navigate To Sign Up Page  LoginUrl
+	Input FirstName FirstName
+	Input LastName LastName
+    Input Username  UserName
+	Input Email Invalid_Email
+    Input Password  Password
+    Submit Sign Up Form
+    Verify Page Should Contain Invalid Email.
+
+	Error message Should Be Visible After Invalid Registration With Empty And Space
+    Navigate To Sign Up Page  LoginUrl
+	Input FirstName FirstName
+	Input LastName LastName
+    Input Username  UserName
+    Input Email    Empty
+	Input Password  Password
+    Submit Sign Up Form
+    Verify That Error message should show Please provide a valid email address.
+
+	Register Without Recaptcha
+    Navigate To Sign Up Page  LoginUrl
+	Input FirstName FirstName
+	Input LastName LastName
+    Input Username  UserName
+	Input Email Email
+    Input Password Password
+    Submit Sign Up Form
+    Verify Page Should Contain Error.
+
+
+

@@ -1,0 +1,70 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	Login to Gitlab; Project must be created by the user before 
+Post Condition	Sign out from Gitlab
+Tags  Issues, TS-4-Issues
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+MainUrl= https://gitlab.com
+ProjectName= NewProject
+IssueTitle= Title
+Description = Description
+UpdatedTitle = UpdatedTitle
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+
+# Positive Tests
+
+	Create issue
+	Navigate To Main Page  MainUrl
+	Click Issues on the left sidebar
+	Click Select project to create issue -button
+    Choose the Project from the dropdown list  ProjectName
+    Input the Title to the New Issue page  IssueTitle
+	Input the Description to the Description field  Description
+	Click Create issue -button
+    Verify Page Should Contain the Issue page just created and a message Issue created just now by	XYZ 
+
+ 	Update name of issue
+	Navigate To Main Page  MainUrl
+	Click the name of the project the issue was created for to open the project  ProjectName
+	Click Issues on the left sidebar under the Project
+	Click the name of the Issue to open it  IssueTitle
+	Click Edit
+    Input the Updated Title to the Issue page  UpdatedTitle
+	Click Save Changes -button
+    Verify Page Should Contain the Issue page just changed and a message XYZ changed title from Title to UpdatedTitle right now under activity
+
+	Create second issue with previous updated name
+	Navigate To Main Page  MainUrl
+	Click Issues on the left sidebar
+	Click New issue in ProjectName -button  ProjectName
+    Input the Title to the New Issue page  UpdatedTitle
+	Page should contain Similar issues -suggestion
+	Input the Description to the Description field  Description
+	Click Create issue -button
+    Verify Page Should Contain the Issue page just created and a message Issue created just now by	XYZ 
+
+    Delete first issue
+	Navigate To Main Page  MainUrl
+	Click the name of the project the issue was created for to open the project  ProjectName
+	Click Issues on the left sidebar under the Project
+	Click the name of the first created Issue to open it  UpdatedTitle
+	Click the three dots -button on the right side of the Edit-button
+	Click Delete issue from the list
+	Click Delete issue -button on the Delete issue alert box 
+    Verify Page Should Contain the Issues page and a message The issue was successfully deleted.
+
+
